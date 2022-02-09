@@ -19,16 +19,16 @@ class Api::V1::ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
     if item.update(item_params)
-      render json: ItemSerializer.new(Item.update(params[:id], item_params))
+      render json: ItemSerializer.new(item)
     else
-      render json: Item.update(params[:id], item_params), status: 404
+      render status: 404
     end
   end
 
   def destroy
     item = Item.find(params[:id])
     if item.destroy
-      render json: Item.delete(params[:id]), status: :no_content
+      render status: :no_content
 
     end
   end
