@@ -12,6 +12,8 @@ class Api::V1::ItemsController < ApplicationController
     item = Item.new(item_params)
     if item.save
       render json: ItemSerializer.new(Item.create(item_params)), status: :created
+    else
+      render status: 404
     end
 
   end
@@ -31,6 +33,10 @@ class Api::V1::ItemsController < ApplicationController
       render status: :no_content
 
     end
+  end
+
+  def find_all
+
   end
 
   private

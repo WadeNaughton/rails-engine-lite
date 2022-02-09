@@ -76,10 +76,8 @@ RSpec.describe 'The items API' do
     expect(created_item.description).to eq(item_params[:description])
     expect(created_item.unit_price).to eq(item_params[:unit_price])
     expect(created_item.merchant_id).to eq(item_params[:merchant_id])
-
-
-
   end
+
 
   it "can update an existing item" do
     merchant = create(:merchant)
@@ -95,7 +93,6 @@ RSpec.describe 'The items API' do
     expect(response.status).to eq(200)
     expect(item.name).to_not eq(previous_name)
     expect(item.name).to eq(item_params[:name])
-
   end
 
   it "can delete an item" do

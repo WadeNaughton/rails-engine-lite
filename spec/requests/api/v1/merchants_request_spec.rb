@@ -20,7 +20,7 @@ RSpec.describe 'The merchant API' do
 
     end
   end
-  it "can get one book by its id" do
+  it "can get one merchant by its id" do
       id = create(:merchant).id
       get "/api/v1/merchants/#{id}"
 
@@ -37,5 +37,27 @@ RSpec.describe 'The merchant API' do
 
   end
 
+  it "finds one MERCHANT based on search criteria" do
+    merchant1 = Merchant.create!(name: 'wade')
+    merchant2 = Merchant.create!(name: 'katie')
+
+    get "/api/v1/merchants/find?name=Wad"
+
+      json_response = JSON.parse(response.body, symbolize_names: true)
+      merchant = json_response[:data]
+      # require "pry"; binding.pry
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+
+
+
+      expect(merchant).to have_key(:id)
+      expect(merchant[:id]).to be_an(String)
+
+      expect(merchant[:attributes]).to have_key(:name)
+      expect(merchant[:attributes][:name]).to be_an(String)
+  end
+
+  
 
 end
