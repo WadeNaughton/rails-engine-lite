@@ -94,7 +94,7 @@ RSpec.describe 'The items API' do
     expect(response).to be_successful
     expect(response.status).to eq(200)
     expect(item.name).to_not eq(previous_name)
-    expect(item.name).to eq("This is a test")
+    expect(item.name).to eq(item_params[:name])
 
   end
 
