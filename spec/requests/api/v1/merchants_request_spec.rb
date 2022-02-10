@@ -50,7 +50,7 @@ RSpec.describe 'The merchant API' do
     merchant1 = Merchant.create!(name: 'wade')
     merchant2 = Merchant.create!(name: 'katie')
 
-    get "/api/v1/merchants/find?name=Wad"
+    get "/api/v1/merchants/find?name=wade"
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       merchant = json_response[:data]
@@ -64,5 +64,4 @@ RSpec.describe 'The merchant API' do
       expect(merchant[:attributes]).to have_key(:name)
       expect(merchant[:attributes][:name]).to be_an(String)
   end
-
 end

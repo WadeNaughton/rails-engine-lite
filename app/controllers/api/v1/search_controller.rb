@@ -1,5 +1,5 @@
 class Api::V1::SearchController < ApplicationController
-
+  # before_action :filter
 
   def find
 
