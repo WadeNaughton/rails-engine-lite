@@ -55,6 +55,15 @@ RSpec.describe 'The items API' do
 
   end
 
+  it "returns 404 with bad id for search" do
+      merchant = create(:merchant)
+      id = create(:item, merchant_id: merchant.id).id
+      get "/api/v1/items/1000000000"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+  end
+
   it "can create a item" do
     merchant = create(:merchant)
 
@@ -78,7 +87,6 @@ RSpec.describe 'The items API' do
     expect(created_item.merchant_id).to eq(item_params[:merchant_id])
   end
 
-
   it "can update an existing item" do
     merchant = create(:merchant)
     item = create(:item, merchant_id: merchant.id).id
@@ -93,6 +101,29 @@ RSpec.describe 'The items API' do
     expect(response.status).to eq(200)
     expect(item.name).to_not eq(previous_name)
     expect(item.name).to eq(item_params[:name])
+  end
+
+  it "renders 404 when incorrect id is given" do
+    merchant = create(:merchant)
+    item = create(:item, merchant_id: merchant.id).id
+    previous_name = Item.last.name
+    item_params = {name: "This is a test", merchant_id: 1000000}
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    patch "/api/v1/items/#{item}", headers: headers, params: JSON.generate({item: item_params})
+    item = Item.find_by(id: item)
+    expect(response.status).to eq(404)
+  end
+  it "renders 404 when incorrect id is string" do
+    merchant = create(:merchant)
+    item = create(:item, merchant_id: merchant.id).id
+    previous_name = Item.last.name
+    item_params = {name: "This is a test", merchant_id: "1"}
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    patch "/api/v1/items/#{item}", headers: headers, params: JSON.generate({item: item_params})
+    item = Item.find_by(id: item)
+    expect(response.status).to eq(404)
   end
 
   it "can delete an item" do
@@ -123,5 +154,36 @@ RSpec.describe 'The items API' do
     expect(merchant[:data][:id].to_i).to eq(merchant1.id)
     expect(merchant[:data][:attributes][:name]).to eq(merchant1.name)
 
+  end
+
+  it "returns all items by search criteria" do
+    merchant1 = Merchant.create!(name: 'wade')
+    item1 = merchant1.items.create!(name: 'test', description: 'test', unit_price: 1.50)
+    item2 = merchant1.items.create!(name: 'testing', description: 'testing', unit_price: 2.50)
+    item3 = merchant1.items.create!(name: 'tester', description: 'testing', unit_price: 2.50)
+    item4 = merchant1.items.create!(name: 'zzzzz', description: 'zzz', unit_price: 2.50)
+
+    get "/api/v1/items/find_all?name=test"
+
+    json_response = JSON.parse(response.body, symbolize_names: true)
+    items = json_response[:data]
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+
+    items.each do |item|
+
+      expect(item).to have_key(:id)
+      expect(item[:id]).to be_an(String)
+
+      expect(item[:attributes]).to have_key(:name)
+      expect(item[:attributes][:name]).to be_an(String)
+
+      expect(item[:attributes]).to have_key(:description)
+      expect(item[:attributes][:description]).to be_an(String)
+
+      expect(item[:attributes]).to have_key(:unit_price)
+      expect(item[:attributes][:unit_price]).to be_an(Float)
+    end
   end
 end

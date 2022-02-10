@@ -37,6 +37,15 @@ RSpec.describe 'The merchant API' do
 
   end
 
+  it "sends 404 with bad id" do
+      id = create(:merchant).id
+      get "/api/v1/merchants/10000000"
+
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+  end
+
   it "finds one MERCHANT based on search criteria" do
     merchant1 = Merchant.create!(name: 'wade')
     merchant2 = Merchant.create!(name: 'katie')
@@ -45,11 +54,9 @@ RSpec.describe 'The merchant API' do
 
       json_response = JSON.parse(response.body, symbolize_names: true)
       merchant = json_response[:data]
-      # require "pry"; binding.pry
+
       expect(response).to be_successful
       expect(response.status).to eq(200)
-
-
 
       expect(merchant).to have_key(:id)
       expect(merchant[:id]).to be_an(String)
@@ -57,7 +64,5 @@ RSpec.describe 'The merchant API' do
       expect(merchant[:attributes]).to have_key(:name)
       expect(merchant[:attributes][:name]).to be_an(String)
   end
-
-  
 
 end
