@@ -87,6 +87,24 @@ RSpec.describe 'The items API' do
     expect(created_item.merchant_id).to eq(item_params[:merchant_id])
   end
 
+  it "render 404 when bad params are entered during creation" do
+    merchant = create(:merchant)
+
+    item_params = ({
+                        name: 'test',
+                        description: 'this is a test',
+                        merchant_id: merchant.id,
+
+                      })
+
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    post "/api/v1/items", headers: headers, params: JSON.generate(item: item_params)
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(404)
+  end
+
   it "can update an existing item" do
     merchant = create(:merchant)
     item = create(:item, merchant_id: merchant.id).id
