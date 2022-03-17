@@ -1,5 +1,4 @@
 class Api::V1::SearchController < ApplicationController
-  # before_action :filter
 
   def find
 
@@ -18,7 +17,7 @@ class Api::V1::SearchController < ApplicationController
     if @items != nil
       render json: ItemSerializer.new(@items)
     else
-      render json: { data: { message: "Unable to find items"}}
+      render json: { data: { message: "Unable to find items"}}, status: 404
     end
   end
 end

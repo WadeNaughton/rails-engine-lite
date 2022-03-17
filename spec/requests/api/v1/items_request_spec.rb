@@ -151,7 +151,7 @@ RSpec.describe 'The items API' do
     expect(Item.count).to eq(2)
 
      delete "/api/v1/items/#{item1.id}"
-
+ #item1.reload
      expect(response).to be_successful
      expect(response.status).to eq(204)
      expect(Item.count).to eq(1)
@@ -188,6 +188,7 @@ RSpec.describe 'The items API' do
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
+    expect(items.count).to eq(3)
 
     items.each do |item|
 
