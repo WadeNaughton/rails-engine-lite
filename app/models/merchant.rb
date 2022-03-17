@@ -34,6 +34,9 @@ class Merchant < ApplicationRecord
     .limit(number)
   end
 
-
+  def self.find_merchant(data)
+     where("name ILIKE ?", "%#{data}%")
+     .order(name: :desc).first
+  end
 
 end
