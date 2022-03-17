@@ -7,8 +7,13 @@
           1,
           1,
           1,
+          null,
           1,
+          null,
           1,
+          null,
+          null,
+          null,
           null,
           1,
           2,
@@ -29,9 +34,42 @@
           1,
           1,
           1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
           null,
           1,
           2,
+          null,
           null,
           null,
           null
@@ -127,7 +165,6 @@
         "lines": [
           1,
           null,
-          null,
           1,
           null,
           1,
@@ -178,10 +215,135 @@
           1,
           null,
           null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
           null
         ]
+      },
+      "/Users/wadenaughton/turing/3module/projects/rails-engine/app/models/invoice.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/wadenaughton/turing/3module/projects/rails-engine/app/models/customer.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/wadenaughton/turing/3module/projects/rails-engine/app/models/invoice_item.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/wadenaughton/turing/3module/projects/rails-engine/app/models/transaction.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          null,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/wadenaughton/turing/3module/projects/rails-engine/app/serializers/merchant_name_revenue_serializer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/wadenaughton/turing/3module/projects/rails-engine/app/serializers/merchant_revenue_serializer.rb": {
+        "lines": [
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/wadenaughton/turing/3module/projects/rails-engine/app/serializers/items_sold_serializer.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
+      },
+      "/Users/wadenaughton/turing/3module/projects/rails-engine/app/controllers/api/v1/revenue/merchants_controller.rb": {
+        "lines": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          null,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "branches": {
+        }
       }
     },
-    "timestamp": 1644545591
+    "timestamp": 1647536162
   }
 }

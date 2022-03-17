@@ -10,4 +10,15 @@ class Api::V1::MerchantsController < ApplicationController
       render status: 404
     end
   end
+
+  def most_items
+    if params[:quantity].nil?
+      render json: JSON.generate({error: 'error'}), status: 400
+    else
+      number = params[:quantity]
+      merchant = Merchant.most_items_sold(number)
+      render json: ::ItemsSoldSerializer.new(merchant)
+    end
+
+  end
 end
