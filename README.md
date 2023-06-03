@@ -1,6 +1,6 @@
 # Rails Engine Lite
 
-<img width="300" alt="Screen Shot 2022-02-11 at 9 46 05 AM" src="https://user-images.githubusercontent.com/90228086/153612657-947783f9-b055-4e53-a3bc-d7afccd75d13.png">
+<img width="100" alt="Screen Shot 2023-06-03 at 6 31 28 AM" src="https://user-images.githubusercontent.com/90228086/243080678-8d210321-2d8a-4bd4-bf70-6911faf06606.png">
 
 ![languages](https://img.shields.io/github/languages/top/WadeNaughton/rails-engine-lite?color=red)
 ![rspec](https://img.shields.io/gem/v/rspec?color=blue&label=rspec)
